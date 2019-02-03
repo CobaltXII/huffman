@@ -10,3 +10,23 @@ huffman requires no external dependencies, besides the standard library. To buil
 clang++ huffman.cpp -o huffman.o -std=c++11
 ```
 
+# Usage
+
+The usage string is as follows, for those who prefer syntax rather than sentances
+
+```
+Usage: ./huffman.o <-e | -d> <path-to-input> <path-to-output>
+```
+
+To encrypt a file, use the -e flag along with the input and output paths; for example
+
+```bash
+./huffman.o -e test.txt test.txt.huff
+```
+
+To decrypt a file, use the -d flag along with the input and output paths; for example
+
+```bash
+./huffman.o -d test.txt.huff test.txt
+```
+
