@@ -468,6 +468,14 @@ int main(int argc, char** argv)
 
 			binary_data[i / 8] = current_bits.to_ullong();
 		}
+
+		// Save binary_data to a file.
+
+		std::ofstream binary_file = std::ofstream(path_to_output);
+
+		binary_file.write((char*)binary_data, encoded_data.length() / 8);
+
+		binary_file.close();
 	}
 	else if (mode == 2)
 	{
