@@ -309,6 +309,10 @@ int main(int argc, char** argv)
 	// Parse the <path-to-output> argument.
 
 	std::string path_to_output = std::string(argv[3]);
+
+	// Load the file as a string.
+
+	std::string plaintext = load_file_as_string(path_to_input);
 	// Exit successfully.
 
 	exit(EXIT_SUCCESS);
