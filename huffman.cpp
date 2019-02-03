@@ -179,3 +179,15 @@ void encode_huffman_to_string(huffman_tree_node* node, std::string& string)
 		encode_huffman_to_string(((huffman_tree_internal*)node)->child_1, string);
 	}
 }
+
+// Encode a Huffman tree to a new binary string, and return that binary
+// string.
+
+std::string encode_huffman(huffman_tree_node* root)
+{
+	std::string encoded;
+
+	encode_huffman_to_string(root, encoded);
+
+	return encoded;
+}
