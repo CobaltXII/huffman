@@ -76,3 +76,46 @@ struct huffman_tree_leaf: huffman_tree_node
 		frequency = _frequency;
 	}
 };
+
+// Traverse a Huffman tree until the path to a leaf node with the specified
+// glyph is found. Follow the path (starting from the root), and write the
+// side of each node (excluding the end node) as a character to the codeword.
+
+bool get_binary_path(huffman_tree_node* node, char glyph, std::string& codeword)
+{
+	// Add the side of the node to the codeword.
+
+	codeword.push_back(node->side + '0');
+
+	// Check if the node is a leaf node. If so, check if it's glyph matches
+	// the specified glyph. If so, return true to the caller.
+
+	if (node->type == huffman_leaf)
+	{
+		if (((huffman_tree_leaf*)node)->glyph == glyph)
+		{
+			return true;
+		}
+	}
+	else
+	{
+		// The node is an internal node. Recursively call get_binary_path on
+		// the node's children.
+
+		if 
+		(
+			get_binary_path(((huffman_tree_internal*)node)->child_0, glyph, codeword) ||
+			get_binary_path(((huffman_tree_internal*)node)->child_1, glyph, codeword)
+		)
+		{
+			return true;
+		}
+	}
+
+	// Could not find any matches, remove the most recently written character
+	// from the codeword and return false to the caller.
+
+	codeword.pop_back();
+
+	return false;
+}
