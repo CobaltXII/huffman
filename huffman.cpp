@@ -249,3 +249,23 @@ huffman_tree_node* decode_huffman(std::string& binary, std::vector<char>& glyphs
 
 	return root;
 }
+
+// Load a file as a string (do this one plaintext files only).
+
+std::string load_file_as_string(std::string path)
+{
+	std::ifstream file = std::ifstream(path);
+
+	if (!file.is_open())
+	{
+		std::cout << "Could not open the file \"" << path << "\"" << std::endl;
+
+		exit(EXIT_FAILURE);
+	}
+
+	std::stringstream buffer;
+
+	buffer << file.rdbuf();
+
+	return buffer.str();
+}
