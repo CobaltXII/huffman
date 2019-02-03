@@ -535,6 +535,31 @@ int main(int argc, char** argv)
 		{
 			codewords[glyph] = get_codeword(huffman, glyph);
 		}
+
+		// Start reading from the binary input, one bit at a time. For each
+		// bit, add it to a buffer. Then, check if the buffer matches any of
+		// the codewords. If so, add that glyph to the decoded string, and
+		// clear the buffer.
+
+		std::string decoded;
+
+		std::string buffer;
+
+		for (auto& bit: binary_input)
+		{
+			buffer.push_back(bit);
+
+			for (auto const& codeword: codewords)
+			{
+				if (codeword.second == buffer)
+				{
+					decoded.push_back(codeword.first);
+
+					buffer.clear();
+				}
+			}
+		}
+
 	}
 
 	// Exit successfully.
