@@ -327,6 +327,16 @@ int main(int argc, char** argv)
 		{
 			frequencies[plaintext[i]]++;
 		}
+
+		// Make a vector of Huffman tree nodes. Populate this vector with one leaf
+		// node for each entry in the frequency table.
+
+		std::vector<huffman_tree_node*> nodes;
+
+		for (auto const& frequency: frequencies)
+		{
+			nodes.push_back(new huffman_tree_leaf(frequency.first, frequency.second));
+		}
 	}
 	else if (mode == 2)
 	{
