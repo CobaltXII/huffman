@@ -518,6 +518,14 @@ int main(int argc, char** argv)
 		// Remove the first three bits from the start of the data.
 
 		binary_input.erase(0, 3);
+
+		// Regenerate the original Huffman tree using the encoded Huffman tree
+		// at the start of the input data. The encoded Huffman tree will be
+		// removed from the input data.
+
+		std::vector<char> glyphs;
+
+		huffman_tree_node* huffman = decode_huffman(binary_input, glyphs);
 	}
 
 	// Exit successfully.
