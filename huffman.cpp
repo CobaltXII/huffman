@@ -426,6 +426,13 @@ int main(int argc, char** argv)
 		encoded_data[0] = useful_bits_bits[0] + '0';
 		encoded_data[1] = useful_bits_bits[1] + '0';
 		encoded_data[2] = useful_bits_bits[2] + '0';
+
+		// Add padding to the end of the data.
+
+		for (int i = 0; i < 8 - useful_bits; i++)
+		{
+			encoded_data.push_back('0');
+		}
 	}
 	else if (mode == 2)
 	{
