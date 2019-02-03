@@ -31,3 +31,32 @@ struct huffman_tree_node
 
 	int frequency;
 };
+
+// A Huffman tree internal node contains two children.
+
+struct huffman_tree_internal: huffman_tree_node
+{
+	huffman_tree_node* child_0;
+	huffman_tree_node* child_1;
+
+	huffman_tree_internal
+	(
+		huffman_tree_node* _child_0,
+		huffman_tree_node* _child_1
+	)
+	{
+		type = huffman_internal;
+
+		child_0 = _child_0;
+		child_1 = _child_1;
+
+		frequency =
+		(
+			child_0->frequency +
+			child_1->frequency
+		);
+
+		child_0->side = 1;
+		child_1->side = 0;
+	}
+};
