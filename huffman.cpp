@@ -496,6 +496,17 @@ int main(int argc, char** argv)
 			binary_input.push_back(current_byte[6] + '0');
 			binary_input.push_back(current_byte[7] + '0');
 		}
+
+		// Parse the first three bits which indicate the amount of useful bits
+		// of the last byte in the input data.
+
+		std::bitset<3> useful_bits_bits;
+
+		useful_bits_bits[0] = binary_input[0] - '0';
+		useful_bits_bits[1] = binary_input[1] - '0';
+		useful_bits_bits[2] = binary_input[2] - '0';
+
+		int useful_bits = useful_bits_bits.to_ullong();
 	}
 
 	// Exit successfully.
