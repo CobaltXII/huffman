@@ -283,6 +283,32 @@ int main(int argc, char** argv)
 		exit(EXIT_FAILURE);
 	}
 
+	// Parse the <-e | -d> argument.
+
+	int mode = -1;
+
+	if (std::string(argv[1]) == "-e")
+	{
+		mode = 1;
+	}
+	else if (std::string(argv[1]) == "-d")
+	{
+		mode = 2;
+	}
+	else
+	{
+		std::cout << "Usage: " << argv[0] << " <-e | -d> <path-to-file> <path-to-output>" << std::endl;
+
+		exit(EXIT_FAILURE);
+	}
+
+	// Parse the <path-to-input> argument.
+
+	std::string path_to_input = std::string(argv[2]);
+
+	// Parse the <path-to-output> argument.
+
+	std::string path_to_output = std::string(argv[3]);
 	// Exit successfully.
 
 	exit(EXIT_SUCCESS);
