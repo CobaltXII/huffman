@@ -414,6 +414,18 @@ int main(int argc, char** argv)
 		// padding).
 
 		std::string encoded_data = "XXX" + encode_huffman(nodes[0]) + encode_plaintext(codewords, plaintext);
+
+		// Find the amount of useful bits in the last 8 bits of the data.
+
+		int useful_bits = encoded_data.length() % 8;
+
+		// Encode the useful bits count to the first three bits of the data.
+
+		std::bitset<3> useful_bits_bits(useful_bits);
+
+		encoded_data[0] = useful_bits_bits[0] + '0';
+		encoded_data[1] = useful_bits_bits[1] + '0';
+		encoded_data[2] = useful_bits_bits[2] + '0';
 	}
 	else if (mode == 2)
 	{
