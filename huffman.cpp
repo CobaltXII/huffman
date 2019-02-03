@@ -407,6 +407,13 @@ int main(int argc, char** argv)
 		{
 			codewords[frequency.first] = get_codeword(nodes[0], frequency.first);
 		}
+
+		// Encode the Huffman tree and the plaintext, adding three filler bits to
+		// the start of the data. These three filler bits will be used to store
+		// the amount of useful bits in the last 8 bits of the data (after adding
+		// padding).
+
+		std::string encoded_data = "XXX" + encode_huffman(nodes[0]) + encode_plaintext(codewords, plaintext);
 	}
 	else if (mode == 2)
 	{
