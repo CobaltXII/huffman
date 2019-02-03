@@ -130,3 +130,18 @@ std::string get_codeword(huffman_tree_node* root, char glyph)
 
 	return codeword.substr(1, codeword.length() - 1);
 }
+
+// Encode a plaintext using a codeword map generated using the plaintext's
+// Huffman tree.
+
+std::string encode_plaintext(std::map<char, std::string>& codewords, std::string& plaintext)
+{
+	std::string encoded;
+
+	for (size_t i = 0; i < plaintext.size(); i++)
+	{
+		encoded += codewords[plaintext[i]];
+	}
+
+	return encoded;
+}
