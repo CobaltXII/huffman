@@ -191,3 +191,47 @@ std::string encode_huffman(huffman_tree_node* root)
 
 	return encoded;
 }
+
+// Decode a Huffman tree node from a binary string, and increment the
+// used_bits counter for each bit read. For each leaf node, add the leaf
+// node's glyph to glyphs.
+
+huffman_tree_node* decode_huffman_node(std::string& binary, int& used_bits, std::vector<char>& glyphs)
+{
+	if (binary[used_bits++] == '1')
+	{
+		// Leaf node.
+
+		std::bitset<8> glyph_bits;
+
+		glyph_bits[0] = binary[used_bits++] - '0';
+		glyph_bits[1] = binary[used_bits++] - '0';
+		glyph_bits[2] = binary[used_bits++] - '0';
+		glyph_bits[3] = binary[used_bits++] - '0';
+		glyph_bits[4] = binary[used_bits++] - '0';
+		glyph_bits[5] = binary[used_bits++] - '0';
+		glyph_bits[6] = binary[used_bits++] - '0';
+		glyph_bits[7] = binary[used_bits++] - '0';
+
+		// Store the glyph.
+
+		char glyph = glyph_bits.to_ullong();
+
+		glyphs.push_back(glyph);
+
+		// Create the leaf node.
+
+		return new huffman_tree_leaf(glyph, -1);
+	}
+	else
+	{
+		// Internal node. Decode children recursively.
+
+		huffman_tree_node* child_0 = decode_huffman_node(binary, used_bits, glyphs);
+		huffman_tree_node* child_1 = decode_huffman_node(binary, used_bits, glyphs);
+
+		// Create the internal node.
+
+		return new huffman_tree_internal(child_0, child_1);
+	}
+}
