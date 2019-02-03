@@ -119,3 +119,14 @@ bool get_binary_path(huffman_tree_node* node, char glyph, std::string& codeword)
 
 	return false;
 }
+
+// Get the binary codeword of a glyph within a Huffman tree.
+
+std::string get_codeword(huffman_tree_node* root, char glyph)
+{
+	std::string codeword;
+
+	get_binary_path(root, glyph, codeword);
+
+	return codeword.substr(1, codeword.length() - 1);
+}
