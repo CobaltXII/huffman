@@ -269,3 +269,13 @@ std::string load_file_as_string(std::string path)
 
 	return buffer.str();
 }
+
+// Driver program.
+
+int main(int argc, char** argv)
+{
+
+	// Exit successfully.
+
+	exit(EXIT_SUCCESS);
+}
