@@ -313,6 +313,16 @@ int main(int argc, char** argv)
 	// Load the file as a string.
 
 	std::string plaintext = load_file_as_string(path_to_input);
+
+	// Encrypt or decrypt the input file, based on the mode.
+
+	if (mode == 1)
+	{
+	}
+	else if (mode == 2)
+	{
+	}
+
 	// Exit successfully.
 
 	exit(EXIT_SUCCESS);
