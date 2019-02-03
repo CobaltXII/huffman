@@ -507,6 +507,17 @@ int main(int argc, char** argv)
 		useful_bits_bits[2] = binary_input[2] - '0';
 
 		int useful_bits = useful_bits_bits.to_ullong();
+
+		// Remove the padding bits from the end of the input data.
+
+		for (int i = 0; i < 8 - useful_bits; i++)
+		{
+			binary_input.pop_back();
+		}
+
+		// Remove the first three bits from the start of the data.
+
+		binary_input.erase(0, 3);
 	}
 
 	// Exit successfully.
