@@ -60,3 +60,19 @@ struct huffman_tree_internal: huffman_tree_node
 		child_1->side = 0;
 	}
 };
+
+// A Huffman tree leaf node contains a glyph.
+
+struct huffman_tree_leaf: huffman_tree_node
+{
+	char glyph;
+
+	huffman_tree_leaf(char _glyph, int _frequency)
+	{
+		type = huffman_leaf;
+
+		glyph = _glyph;
+
+		frequency = _frequency;
+	}
+};
