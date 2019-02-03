@@ -47,3 +47,6 @@ cksum test.txt
 
 We can see that the checksums are the same, so the compression and decompression retained the integrity of the original data.
 
+# License
+
+This repository and all of it's contents are licensed under the MIT License.
