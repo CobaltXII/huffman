@@ -446,6 +446,28 @@ int main(int argc, char** argv)
 		{
 			exit(EXIT_FAILURE);
 		}
+
+		// Convert encoded_data to a binary stream and write it procedurally to
+		// binary_data.
+
+		for (size_t i = 0; i < encoded_data.length(); i += 8)
+		{
+			std::bitset<8> current_bits;
+
+			current_bits[0] = encoded_data[i + 0] - '0';
+			current_bits[1] = encoded_data[i + 1] - '0';
+			current_bits[2] = encoded_data[i + 2] - '0';
+			current_bits[3] = encoded_data[i + 3] - '0';
+			current_bits[4] = encoded_data[i + 4] - '0';
+			current_bits[5] = encoded_data[i + 5] - '0';
+			current_bits[6] = encoded_data[i + 6] - '0';
+			current_bits[7] = encoded_data[i + 7] - '0';
+
+			// Convert the bitset to an unsigned char and write it to
+			// binary_data.
+
+			binary_data[i / 8] = current_bits.to_ullong();
+		}
 	}
 	else if (mode == 2)
 	{
