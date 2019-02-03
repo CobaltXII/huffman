@@ -30,3 +30,20 @@ To decrypt a file, use the -d flag along with the input and output paths; for ex
 ./huffman.o -d test.txt.huff test.txt
 ```
 
+# Testing
+
+To make sure that the compression and decompression was successful, compare the checksums of the original and decompressed data; for example
+
+```bash
+cksum test.txt
+2676670591 448810 test.txt
+./huffman.o -e test.txt test.txt.huff
+cksum test.txt.huff
+2647859061 259812 test.txt.huff
+./huffman.o -d test.txt.huff test.txt
+cksum test.txt
+2676670591 448810 test.txt
+```
+
+We can see that the checksums are the same, so the compression and decompression retained the integrity of the original data.
+
