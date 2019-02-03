@@ -318,6 +318,15 @@ int main(int argc, char** argv)
 
 	if (mode == 1)
 	{
+		// Create a map that maps each character in the alphabet of the plaintext
+		// to it's frequency.
+
+		std::map<char, int> frequencies;
+
+		for (size_t i = 0; i < plaintext.size(); i++)
+		{
+			frequencies[plaintext[i]]++;
+		}
 	}
 	else if (mode == 2)
 	{
