@@ -397,6 +397,16 @@ int main(int argc, char** argv)
 
 			nodes.push_back(new huffman_tree_internal(small_0, small_1));
 		}
+
+		// Create a map that maps each character in the alphabet of the plaintext
+		// to it's binary codeword.
+
+		std::map<char, std::string> codewords;
+
+		for (auto const& frequency: frequencies)
+		{
+			codewords[frequency.first] = get_codeword(nodes[0], frequency.first);
+		}
 	}
 	else if (mode == 2)
 	{
