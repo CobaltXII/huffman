@@ -337,6 +337,66 @@ int main(int argc, char** argv)
 		{
 			nodes.push_back(new huffman_tree_leaf(frequency.first, frequency.second));
 		}
+
+		// Repeat until nodes contains only one Huffman node.
+
+		while (nodes.size() > 1)
+		{
+			// Find the two nodes with the lowest frequencies.
+
+			huffman_tree_node* small_0 = nullptr;
+			huffman_tree_node* small_1 = nullptr;
+
+			size_t small_0_idx;
+			size_t small_1_idx;
+
+			int lowest_frequency = std::numeric_limits<int>::max();
+
+			// Find the node with the lowest frequency.
+
+			for (size_t i = 0; i < nodes.size(); i++)
+			{
+				if (nodes[i]->frequency < lowest_frequency)
+				{
+					small_0 = nodes[i];
+
+					small_0_idx = i;
+
+					lowest_frequency = small_0->frequency;
+				}
+			}
+
+			// Remove the node with the lowest frequency (small_0) from nodes.
+
+			nodes.erase(nodes.begin() + small_0_idx);
+
+			// Find the node with the second lowest frequency (excluding the node
+			// with the lowest frequency).
+
+			lowest_frequency = std::numeric_limits<int>::max();
+
+			for (size_t i = 0; i < nodes.size(); i++)
+			{
+				if (nodes[i]->frequency < lowest_frequency)
+				{
+					small_1 = nodes[i];
+
+					small_1_idx = i;
+
+					lowest_frequency = small_1->frequency;
+				}
+			}
+
+			// Remove the node with the second lowest frequency (small_1) from 
+			// nodes.
+
+			nodes.erase(nodes.begin() + small_1_idx);
+
+			// Create a Huffman internal node linking small_0 and small_1, then
+			// add that node to nodes.
+
+			nodes.push_back(new huffman_tree_internal(small_0, small_1));
+		}
 	}
 	else if (mode == 2)
 	{
