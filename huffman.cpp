@@ -560,6 +560,13 @@ int main(int argc, char** argv)
 			}
 		}
 
+		// The binary input has been decoded. Save it to a file.
+
+		std::ofstream out_file = std::ofstream(path_to_output);
+
+		out_file << decoded;
+
+		out_file.close();
 	}
 
 	// Exit successfully.
