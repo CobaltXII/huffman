@@ -235,3 +235,17 @@ huffman_tree_node* decode_huffman_node(std::string& binary, int& used_bits, std:
 		return new huffman_tree_internal(child_0, child_1);
 	}
 }
+
+// Decode a Huffman tree from a binary string, and remove the encoded Huffman
+// tree from the start of the binary string.
+
+huffman_tree_node* decode_huffman(std::string& binary, std::vector<char>& glyphs)
+{
+	int used_bits = 0;
+
+	huffman_tree_node* root = decode_huffman_node(binary, used_bits, glyphs);
+
+	binary.erase(0, used_bits);
+
+	return root;
+}
