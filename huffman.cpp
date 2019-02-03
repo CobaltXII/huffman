@@ -526,6 +526,15 @@ int main(int argc, char** argv)
 		std::vector<char> glyphs;
 
 		huffman_tree_node* huffman = decode_huffman(binary_input, glyphs);
+
+		// Regenerate the glyph to codeword map using the Huffman tree.
+
+		std::map<char, std::string> codewords;
+
+		for (auto& glyph: glyphs)
+		{
+			codewords[glyph] = get_codeword(huffman, glyph);
+		}
 	}
 
 	// Exit successfully.
