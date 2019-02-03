@@ -433,6 +433,19 @@ int main(int argc, char** argv)
 		{
 			encoded_data.push_back('0');
 		}
+
+		// Allocate a block of bytes to write the binary representation of the
+		// encoded data to.
+
+		unsigned char* binary_data = (unsigned char*)malloc(encoded_data.length() / 8);
+
+		// Make sure the binary data could be allocated, if not, the system is out
+		// of memory.
+
+		if (!binary_data)
+		{
+			exit(EXIT_FAILURE);
+		}
 	}
 	else if (mode == 2)
 	{
