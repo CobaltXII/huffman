@@ -479,6 +479,23 @@ int main(int argc, char** argv)
 	}
 	else if (mode == 2)
 	{
+		// Convert the input to a binary string.
+
+		std::string binary_input;
+
+		for (size_t i = 0; i < plaintext.size(); i++)
+		{
+			std::bitset<8> current_byte(plaintext[i]);
+
+			binary_input.push_back(current_byte[0] + '0');
+			binary_input.push_back(current_byte[1] + '0');
+			binary_input.push_back(current_byte[2] + '0');
+			binary_input.push_back(current_byte[3] + '0');
+			binary_input.push_back(current_byte[4] + '0');
+			binary_input.push_back(current_byte[5] + '0');
+			binary_input.push_back(current_byte[6] + '0');
+			binary_input.push_back(current_byte[7] + '0');
+		}
 	}
 
 	// Exit successfully.
