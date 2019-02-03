@@ -274,6 +274,14 @@ std::string load_file_as_string(std::string path)
 
 int main(int argc, char** argv)
 {
+	// Make sure the argument count is correct.
+
+	if (argc != 4)
+	{
+		std::cout << "Usage: " << argv[0] << " <-e | -d> <path-to-input> <path-to-output>" << std::endl;
+
+		exit(EXIT_FAILURE);
+	}
 
 	// Exit successfully.
 
