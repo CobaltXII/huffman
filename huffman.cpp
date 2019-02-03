@@ -145,3 +145,37 @@ std::string encode_plaintext(std::map<char, std::string>& codewords, std::string
 
 	return encoded;
 }
+
+// Encode a Huffman tree to a reference to a string.
+
+void encode_huffman_to_string(huffman_tree_node* node, std::string& string)
+{
+	if (node->type == huffman_leaf)
+	{
+		string += "1";
+
+		// Write the binary representation of the node's glyph to the output
+		// binary string.
+
+		std::bitset<8> glyph_bits(((huffman_tree_leaf*)node)->glyph);
+
+		string += glyph_bits[0] + '0';
+		string += glyph_bits[1] + '0';
+		string += glyph_bits[2] + '0';
+		string += glyph_bits[3] + '0';
+		string += glyph_bits[4] + '0';
+		string += glyph_bits[5] + '0';
+		string += glyph_bits[6] + '0';
+		string += glyph_bits[7] + '0';
+	}
+	else
+	{
+		string += "0";
+
+		// Recursively encode the node's children to the same output binary
+		// string.
+
+		encode_huffman_to_string(((huffman_tree_internal*)node)->child_0, string);
+		encode_huffman_to_string(((huffman_tree_internal*)node)->child_1, string);
+	}
+}
